@@ -9,52 +9,20 @@ const linkStyles = {
   textDecoration: "none",
   color: "white",
 };
+import { useHistory } from "react-router-dom";
 
-function Navbar({ setIsLoggedIn }) {
+function Navbar({ onLogout }) {
   const history = useHistory();
 
-  function handleLogout() {
-    setIsLoggedIn(false);
+  function handleClick() {
+    onLogout();
     history.push("/login");
   }
 
   return (
-    <div>
-      <NavLink
-        to="/"
-        /* set exact so it knows to only set activeStyle when route is deeply equal to link */
-        exact
-        /* add styling to Navlink */
-        style={linkStyles}
-        /* add prop for activeStyle */
-        activeStyle={{
-          background: "darkblue",
-        }}
-      >
-        Home
-      </NavLink>
-      <NavLink
-        to="/about"
-        exact
-        style={linkStyles}
-        activeStyle={{
-          background: "darkblue",
-        }}
-      >
-        About
-      </NavLink>
-      <NavLink
-        to="/login"
-        exact
-        style={linkStyles}
-        activeStyle={{
-          background: "darkblue",
-        }}
-      >
-        Login
-      </NavLink>
-      <button onClick={handleLogout}>Logout</button>
-    </div>
+    <nav>
+      <button onClick={handleClick}>Logout</button>
+    </nav>
   );
 }
 
